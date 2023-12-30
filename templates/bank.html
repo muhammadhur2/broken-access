@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bank Page</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+    <h1>Welcome to the Bank Page</h1>
+    <p>This is a dummy bank page.</p>
+    <a href="/dashboard">Go Back</a>
+</body>
+</html>
