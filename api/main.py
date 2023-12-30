@@ -6,7 +6,7 @@ import os
 
 
 app = Flask(__name__)
-mongo_uri = "mongodb+srv://hur:2Rm4Ens6QujrtPUS@cluster0.ljc5i8j.mongodb.net/?retryWrites=true&w=majority"
+mongo_uri = "mongodb+srv://hur:2Rm4Ens6QujrtPUS@cluster0.ljc5i8j.mongodb.net/?retryWrites=true&w=majority/default_db"
 client = MongoClient(mongo_uri)
 db = client.get_default_database()  # This will get the default database or you can specify a database name
 
