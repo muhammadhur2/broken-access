@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timedelta
 from flask_mail import Mail, Message
+from pymongo import MongoClient
+import os
+
 
 app = Flask(__name__)
 mongo_uri = "mongodb+srv://hur:2Rm4Ens6QujrtPUS@cluster0.ljc5i8j.mongodb.net/?retryWrites=true&w=majority"
