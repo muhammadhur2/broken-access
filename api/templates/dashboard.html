@@ -1,20 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <style>
+      body {
+          font-family: Arial, sans-serif;
+          background-color: #f4f4f4;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          height: 100vh;
+      }
+
+      h1 {
+          color: #333;
+          margin-bottom: 10px;
+      }
+
+      p {
+          color: #666;
+          margin-bottom: 20px;
+      }
+
+      a, .button {
+          text-decoration: none;
+          color: black;
+          background-color: red;
+          padding: 10px 15px;
+          border-radius: 5px;
+          transition: background-color 0.3s ease;
+          margin: 0 10px; /* Spacing between buttons */
+          cursor: pointer;
+      }
+
+      a:hover, .button:hover {
+          background-color: #0056b3;
+      }
+
+      .button-green {
+          background-color: #28a745;
+      }
+
+      .button-green:hover {
+          background-color: #218838;
+      }
+
+      .button-blue {
+          background-color: #007bff;
+      }
+
+      .button-blue:hover {
+          background-color: #0056b3;
+      }
+
+      .dashboard-buttons {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-bottom: 20px;
+      }
+
+      .messages {
+          color: red;
+          margin-bottom: 20px;
+          text-align: center;
+      }
+
+      .messages ul {
+          list-style-type: none;
+          padding: 0;
+      }
+
+      .messages li {
+          margin-bottom: 10px;
+      }
+
+      #privilege-form {
+          display: none;
+          margin-top: 20px;
+      }
+
+      input[type="password"] {
+          padding: 10px;
+          margin-right: 10px;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+      }
+  </style>
+    <script>
+        function togglePrivilegeForm() {
+            var form = document.getElementById('privilege-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function checkPassword(event) {
+            event.preventDefault(); // Prevent the form from submitting by default
+            var password = document.getElementById('privilege-password').value;
+            if (password === "password") {
+                window.location.href = '/escalate_privileges'; // Redirect to the route to toggle privileges
+            } else {
+                alert("Incorrect password");
+            }
+        }
+    </script>
 </head>
 <body>
-    {% with messages = get_flashed_messages() %}
-  {% if messages %}
-    <ul>
-    {% for message in messages %}
-      <li>{{ message }}</li>
-    {% endfor %}
-    </ul>
-  {% endif %}
-{% endwith %}
+    <div class="messages">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+    </div>
+
     <h1>Welcome to Your Dashboard</h1>
     <p>This is a protected page only accessible after login.</p>
-    <a href="/logout">Logout</a>
+
+    <div class="dashboard-buttons">
+        <a href="/bank" class="button button-green">Access Bank</a>
+        <button onclick="togglePrivilegeForm()" class="button button-blue">Toggle Admin Privileges</button>
+    </div>
+
+
+
+    <form id="privilege-form" onsubmit="checkPassword(event)">
+        <input type="password" id="privilege-password" placeholder="Enter password" required>
+        <button type="submit" class="button">Submit</button>
+
+        <br></br><br></br>
+    </form>
+
+    <a href="/logout" class="button">Logout</a>
 </body>
 </html>
