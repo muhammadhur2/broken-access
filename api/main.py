@@ -8,7 +8,7 @@ from bson import ObjectId
 
 
 app = Flask(__name__)
-mongo_uri = "mongodb+srv://hur:2Rm4Ens6QujrtPUS@cluster0.ljc5i8j.mongodb.net/?retryWrites=true&w=majority"
+mongo_uri = "mongodb+srv://cookie-tracker:NWA4atFPA9rj.Ek@cluster0.ljc5i8j.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(mongo_uri)
 db = client['defaultdb']  # This will get the default database or you can specify a database name
 
@@ -125,7 +125,7 @@ def escalate_privileges():
 
 def generate_alert(message):
     try:
-        msg = Message("Alert from Flask App", sender=app.config['MAIL_USERNAME'], recipients=["commanderata@gmail.com"])
+        msg = Message("Alert from Flask App", sender=app.config['MAIL_USERNAME'], recipients=["m.bibi.22844@khi.iba.edu.pk"])
         msg.body = message
         mail.send(msg)
         print("Email alert sent: " + message)
